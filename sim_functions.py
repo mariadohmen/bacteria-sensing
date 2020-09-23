@@ -21,7 +21,7 @@ from warnings import warn
 
 def response_sensor_set(n_sens, n_bac, response_limits, indist):
     """
-    Generates a random response for a set of sensors and bactera cultures.
+     .
 
     Parameters
     ----------
@@ -85,7 +85,8 @@ def add_noise(response_matrix, noise):
     -------
     response_matrix : 2D array
         Array of the noisy responses for a given numer sensors and
-        bacteria cultures."""
+        bacteria cultures.
+    """
     I, J = response_matrix.shape
     # The size of the noise is varried
 
@@ -144,11 +145,12 @@ def simple_PCA(dataset, n_sens, figure=False):
     Parameters
     ----------
     dataset : DataFrame
-        Pandas DataFrame, where the columns are the response of each Sensor.
+        Pandas DataFrame, where the columns are the response of each sensor.
         The last column should be called bacterium number and contains a
         numerical key for the bacterium.
     n_sens : int
-        Number of sensors used in measurement/simulation
+        Number of sensors used in measurement/simulation. Equal to the number
+        of principal components.
     figure : bool, optional
         If figure is true, a figure plotting the first two principal components
         is returned. Default : False
@@ -204,9 +206,9 @@ def perform_LDA(dataset, n_sens):
         Pandas DataFrame, where the columns are the response of each Sensor.
         The last column should be called bacterium number and contains a
         numerical key for the bacterium.
-
     n_sens : int
-        Number of sensors used in measurement/simulation
+        Number of sensors used in measurement/simulation. Equal to the number
+        of principal components.
 
     Returns
     ------
@@ -253,6 +255,21 @@ def _multiple_simulations(n_sensor_list, n_bac_list, response_limits,
     sensors are initiated and sequencially added. The number of sensors equals
     the number of principal components for the PCA. The simulated experiment is
     repeated a minimal amout of time to pefrom the PCA.
+
+    Parameters
+    ----------
+    n_sensors_list : lst
+        A list of different number of sensors which are squencially added to
+        the simulated exeriment. It must be a list of integers.
+    n_bac_list : lst
+    A list of different number of bacteria which are squencially added to
+        the simulated exeriment. It must be a list of integers.
+    response_limit : tuple
+        minimal and maximal sensor response.
+    indist : float
+        float number in an interval [0.0, 1.0]. Percentage of sensors which
+        respond the same to two different bacteria.
+
     Returns
     -------
     result_dict : dict
@@ -359,6 +376,19 @@ def multiple_simulations(n_sensor_list, n_bac_list, response_limits,
         Number of experiment repetitions. Default is False, no number of
         repetitions is set, and the minium number for each sensor/bacteria set
         is used.
+
+    Returns
+    -------
+    result_dict : dict
+        dictionary containing the results of the PCA and the parameters for the
+        simulation
+
+        parameters : array
+        In parameters one finds under index i: 0: number of sensors, 1: number
+        of bactera (equal to first dict key), 2: percentage of indistinguish-
+        able sensors, 3: number of measurement repetitions, 4: percentage of
+        maximum noise, 5: trace of confusion matrix 6: trace of confusion
+        matrix / sum of confusion matrix
     """
     if repeats is False:
         results_dict = _multiple_simulations(n_sensor_list, n_bac_list,
@@ -430,14 +460,6 @@ def multiple_simulations(n_sensor_list, n_bac_list, response_limits,
             parameter_array[5, i] = confusion_matrix[:, :, i].trace()
             parameter_array[6, i] = confusion_matrix[
                     :, :, i].trace() / confusion_matrix[:, :, i].sum()
-
-        """
-        In parameters one finds under index i: 0: number of sensors, 1: number
-        of bactera (equal to first dict key), 2: percentage of indistinguish-
-        able sensors, 3: number of measurement repetitions, 4: percentage of
-        maximum noise, 5: trace of confusion matrix 6: trace of confusion
-        matrix / sum of confusion matrix
-        """
         results_dict[b]['parameters'] = parameter_array
         results_dict[b]['variance_matrix'] = variance_matrix
         results_dict[b]['confusion_matrix'] = confusion_matrix

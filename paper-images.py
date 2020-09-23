@@ -22,10 +22,10 @@ n_sensor_list = np.arange(2, 26, 1)
 n_bac_list = np.arange(2, 11, 2)
 
 
-sim_list = np.zeros(40)
-for i in np.arange(sim_list):
-    sim_list[i] = multiple_simulations(n_sensor_list, n_bac_list,
-                                       RESPONSE_LIMITS, INDIST, NOISE, True)
+sim_list = []
+for i in np.arange(40):
+    sim_list.append(multiple_simulations(n_sensor_list, n_bac_list,
+                                       RESPONSE_LIMITS, INDIST, NOISE, True))
 
 # %%
 
@@ -133,12 +133,10 @@ RESPONSE_LIMITS = (0.5, 2)
 n_sensor_list = np.arange(2, 26, 1)
 n_bac_list = np.arange(2, 11, 2)
 
-sim_list = np.zeros(40)
-
-for i in np.arange(sim_list):
-    sim_list[i] = multiple_simulations(n_sensor_list, n_bac_list,
-                                       RESPONSE_LIMITS, INDIST, NOISE, True)
-
+sim_list = []
+for i in np.arange(40):
+    sim_list.append(multiple_simulations(n_sensor_list, n_bac_list,
+                                       RESPONSE_LIMITS, INDIST, NOISE, True))
 # %%
 
 # LDA Fig
@@ -245,11 +243,10 @@ RESPONSE_LIMITS = (0.7, 1.7)
 n_sensor_list = np.arange(2, 26, 1)
 n_bac_list = np.arange(2, 11, 2)
 
-sim_list = np.zeros(40)
-
-for i in np.arange(sim_list):
-    sim_list[i] = multiple_simulations(n_sensor_list, n_bac_list,
-                                       RESPONSE_LIMITS, INDIST, NOISE, True)
+sim_list = []
+for i in np.arange(40):
+    sim_list.append(multiple_simulations(n_sensor_list, n_bac_list,
+                                       RESPONSE_LIMITS, INDIST, NOISE, True))
 
 # %%
 
@@ -357,11 +354,10 @@ RESPONSE_LIMITS = (0.7, 1.7)
 n_sensor_list = np.arange(2, 26, 1)
 n_bac_list = np.arange(2, 11, 2)
 
-sim_list = np.zeros(40)
-
-for i in np.arange(sim_list):
-    sim_list[i] = multiple_simulations(n_sensor_list, n_bac_list,
-                                       RESPONSE_LIMITS, INDIST, NOISE, True)
+sim_list = []
+for i in np.arange(40):
+    sim_list.append(multiple_simulations(n_sensor_list, n_bac_list,
+                                       RESPONSE_LIMITS, INDIST, NOISE, True))
 
 # %%
 
@@ -469,11 +465,10 @@ RESPONSE_LIMITS = (0.7, 1.7)
 n_sensor_list = np.arange(2, 26, 1)
 n_bac_list = np.arange(2, 11, 2)
 
-sim_list = np.zeros(40)
-
-for i in np.arange(sim_list):
-    sim_list[i] = multiple_simulations(n_sensor_list, n_bac_list,
-                                       RESPONSE_LIMITS, INDIST, NOISE, True)
+sim_list = []
+for i in np.arange(40):
+    sim_list.append(multiple_simulations(n_sensor_list, n_bac_list,
+                                       RESPONSE_LIMITS, INDIST, NOISE, True))
 # %%
 
 fig1 = plt.figure(figsize=(9, 8))
@@ -577,11 +572,11 @@ RESPONSE_LIMITS = (0.7, 1.7)
 
 n_sensor_list = np.arange(2, 26, 1)
 n_bac_list = np.arange(2, 11, 2)
-sim_list = np.zeros(40)
 
-for i in np.arange(sim_list):
-    sim_list[i] = multiple_simulations(n_sensor_list, n_bac_list,
-                                       RESPONSE_LIMITS, INDIST, NOISE, True)
+sim_list = []
+for i in np.arange(40):
+    sim_list.append(multiple_simulations(n_sensor_list, n_bac_list,
+                                       RESPONSE_LIMITS, INDIST, NOISE, True))
 # %%
 
 fig1 = plt.figure(figsize=(9, 8))
